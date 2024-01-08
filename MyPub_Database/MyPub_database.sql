@@ -2,21 +2,22 @@ CREATE TABLE "Itallap" (
   "ital_id" INT PRIMARY KEY,
   "nev" VARCHAR(255) NOT NULL,
   "kiszereles_id" INT,
-  "ar" "DECIMAL(5, 2)" NOT NULL
+  "ar" "DECIMAL(5, 2)" NOT NULL,
+  "kategoria_id" int
 );
 
-CREATE TABLE "Felhasznalo" (
+CREATE TABLE "Felhasznalok" (
   "user_id" INT PRIMARY KEY,
   "nev" VARCHAR(255) NOT NULL,
   "email" VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE "Asztal" (
+CREATE TABLE "Asztalok" (
   "asztal_id" INT PRIMARY KEY,
   "szam" VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE "Rendeles" (
+CREATE TABLE "Rendelesek" (
   "rendeles_id" INT PRIMARY KEY,
   "user_id" INT,
   "asztal_id" INT,
@@ -30,35 +31,41 @@ CREATE TABLE "KedvencItalok" (
   "ital_id" INT
 );
 
-CREATE TABLE "RendelesTetel" (
+CREATE TABLE "RendelesTetelek" (
   "tetel_id" INT PRIMARY KEY,
   "rendeles_id" INT,
   "ital_id" INT,
   "mennyiseg" INT
 );
 
-CREATE TABLE "Kiszereles" (
-  "kszereles_id" INT PRIMARY KEY,
+CREATE TABLE "Kiszerelesek" (
+  "kiszereles_id" INT PRIMARY KEY,
   "Kiszereles_nev" VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE "Statusz" (
+CREATE TABLE "Statuszok" (
   "statusz_id" INT PRIMARY KEY,
   "nev" VARCHAR(50)
 );
+CREATE TABLE "Kategoriak" (
+  "kategoria_id" INT PRIMARY KEY,
+  "kategoria_nev" VARCHAR(50) NOT NULL
+);
 
-ALTER TABLE "Rendeles" ADD FOREIGN KEY ("asztal_id") REFERENCES "Asztal" ("asztal_id");
+ALTER TABLE "Rendelesek" ADD FOREIGN KEY ("asztal_id") REFERENCES "Asztalok" ("asztal_id");
 
-ALTER TABLE "KedvencItalok" ADD FOREIGN KEY ("user_id") REFERENCES "Felhasznalo" ("user_id");
+ALTER TABLE "KedvencItalok" ADD FOREIGN KEY ("user_id") REFERENCES "Felhasznalok" ("user_id");
 
 ALTER TABLE "KedvencItalok" ADD FOREIGN KEY ("ital_id") REFERENCES "Itallap" ("ital_id");
 
-ALTER TABLE "Felhasznalo" ADD FOREIGN KEY ("user_id") REFERENCES "Rendeles" ("user_id");
+ALTER TABLE "Felhasznalok" ADD FOREIGN KEY ("user_id") REFERENCES "Rendelesek" ("user_id");
 
-ALTER TABLE "RendelesTetel" ADD FOREIGN KEY ("rendeles_id") REFERENCES "Rendeles" ("rendeles_id");
+ALTER TABLE "RendelesTetelek" ADD FOREIGN KEY ("rendeles_id") REFERENCES "Rendelesek" ("rendeles_id");
 
-ALTER TABLE "Itallap" ADD FOREIGN KEY ("ital_id") REFERENCES "RendelesTetel" ("ital_id");
+ALTER TABLE "Itallap" ADD FOREIGN KEY ("ital_id") REFERENCES "RendelesTetelek" ("ital_id");
 
-ALTER TABLE "Kiszereles" ADD FOREIGN KEY ("Kiszereles_nev") REFERENCES "Itallap" ("kiszereles_id");
+ALTER TABLE "Kiszerelesek" ADD FOREIGN KEY ("kiszereles_id") REFERENCES "Itallap" ("kiszereles_id");
 
-ALTER TABLE "Statusz" ADD FOREIGN KEY ("statusz_id") REFERENCES "Rendeles" ("statusz_id");
+ALTER TABLE "Statuszok" ADD FOREIGN KEY ("statusz_id") REFERENCES "Rendelesek" ("statusz_id");
+
+ALTER TABLE "Kategoriak" ADD FOREIGN KEY ("kategoria_id") REFERENCES "Itallap" ("kategoria_id");
