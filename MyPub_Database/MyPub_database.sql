@@ -2,7 +2,7 @@ CREATE TABLE "Itallap" (
   "ital_id" INT PRIMARY KEY,
   "ital_nev" VARCHAR(255) NOT NULL,
   "kiszereles_id" INT,
-  "ital_ar" "DECIMAL(5, 2)" NOT NULL,
+  "ital_ar" "decimal" ,
   "kategoria_id" int
 );
 
@@ -21,7 +21,7 @@ CREATE TABLE "Rendelesek" (
   "rendeles_id" INT PRIMARY KEY,
   "user_id" INT,
   "asztal_id" INT,
-  "datum" DATETIME,
+  "datum" timestamp,
   "statusz_id" INT
 );
 
