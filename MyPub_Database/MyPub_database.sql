@@ -1,20 +1,20 @@
 CREATE TABLE "Itallap" (
   "ital_id" INT PRIMARY KEY,
-  "nev" VARCHAR(255) NOT NULL,
+  "ital_nev" VARCHAR(255) NOT NULL,
   "kiszereles_id" INT,
-  "ar" "DECIMAL(5, 2)" NOT NULL,
+  "ital_ar" "DECIMAL(5, 2)" NOT NULL,
   "kategoria_id" int
 );
 
 CREATE TABLE "Felhasznalok" (
   "user_id" INT PRIMARY KEY,
-  "nev" VARCHAR(255) NOT NULL,
-  "email" VARCHAR(255) NOT NULL
+  "user_nev" VARCHAR(255) NOT NULL,
+  "user_email" VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE "Asztalok" (
   "asztal_id" INT PRIMARY KEY,
-  "szam" VARCHAR(50) NOT NULL
+  "asztal_szam" VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE "Rendelesek" (
@@ -40,12 +40,12 @@ CREATE TABLE "RendelesTetelek" (
 
 CREATE TABLE "Kiszerelesek" (
   "kiszereles_id" INT PRIMARY KEY,
-  "Kiszereles_nev" VARCHAR(50) NOT NULL
+  "kiszereles_nev" VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE "Statuszok" (
   "statusz_id" INT PRIMARY KEY,
-  "nev" VARCHAR(50)
+  "statusz_nev" VARCHAR(50)
 );
 CREATE TABLE "Kategoriak" (
   "kategoria_id" INT PRIMARY KEY,
