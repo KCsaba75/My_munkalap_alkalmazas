@@ -26,7 +26,7 @@ CREATE TABLE "Rendeles" (
 
 CREATE TABLE "KedvencItalok" (
   "kedvenc_id" INT PRIMARY KEY,
-  "user_id" INT,
+  "user_id" INT, 
   "ital_id" INT
 );
 
