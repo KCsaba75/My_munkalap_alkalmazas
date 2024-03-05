@@ -4,9 +4,9 @@ movie-venv\Scripts\activate
 
 ha megjelenik a (vizsgaremek_venv) a konzolon akkor működött
 
+https://github.com/KCsaba75/My_munkalap_alkalmazas.git
 
-
-cd movie_tinder
+cd vr_fullstack
 
 pip install -r requirements.txt
 
