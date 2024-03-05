@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Megrendelők listája gépjárművekkel</title>
+</head>
+<body>
+    <h1>Megrendelők listája gépjárművekkel</h1>
+    <ul>
+        {% for megrendelo in object_list %}
+        <li>
+            {{ megrendelo.nev }} - {{ megrendelo.gepjarmu.rendszam }} ({{ megrendelo.gepjarmu.gyartmany }})
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

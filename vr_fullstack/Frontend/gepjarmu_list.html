@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Gépjárművek</title>
+</head>
+<body>
+    <h1>Gépjárművek</h1>
+    <ul>
+        {% for gepjarmu in object_list %}
+        <li>
+            {{ gepjarmu.rendszam }} - {{ gepjarmu.gyartmany }} - {{ gepjarmu.tipus }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
