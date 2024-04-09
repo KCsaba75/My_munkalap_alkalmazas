@@ -1,54 +1,47 @@
+# views.py
+
 from rest_framework.views import APIView
-from django.http import HttpResponse
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from django.template import loader
 from rest_framework import status
-from rest_framework.generics import RetrieveUpdateDestroyAPIView
-from .models import Gepjarmu, Hibatipusok, Megrendelo, Munkalap
-from .serializers import GepjarmuSerializer, HibatipusokSerializer, MegrendeloSerializer, MunkalapSerializer
-from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView
-from django.shortcuts import render, redirect
-# Gepjarmu nézetek
+from .models import Munkalap, Gepjarmu, Megrendelo, Hibatipusok
+from .serializers import MunkalapSerializer, GepjarmuSerializer, MegrendeloSerializer, HibatipusokSerializer
 
-class GepjarmuListView(ListView):
-    queryset = Gepjarmu.objects.all()
-    serializer_class = GepjarmuSerializer
-    template_name = 'gepjarmu_list.html'
-
-    #--------------
-class MegrendeloListWithGepjarmuView(APIView):
+# gépjármű nézetek
+class OsszesGepjarmuJsonView(APIView):
     def get(self, request, *args, **kwargs):
-        megrendelok = Megrendelo.objects.all()
-        serializer = MegrendeloSerializer(megrendelok, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-    template_name = 'megrendelo_lista_gepjarmuvekkel.html'
+        gepjarmuvek = Gepjarmu.objects.all()
+        serializer = GepjarmuSerializer(gepjarmuvek, many=True)
+        return Response(serializer.data)
 
 
 
 
-def Megrendelesek(request):
-    adatok = Megrendelo.objects.all().values()
-    template = loader.get_template('proba.html')
-    context = {
-            'adatok': adatok,
-    }
-    return HttpResponse(template.render(context, request))  
+# munkalap nézetek
+
+class AktivMunkalapokJsonView(APIView):
+    def get(self, request, *args, **kwargs):
+        aktiv_munkalapok = Munkalap.objects.filter(munkalapstatus='enum_value_1')
+        serializer = MunkalapSerializer(aktiv_munkalapok, many=True)
+        return Response(serializer.data)
+    
+class InAktivMunkalapokJsonView(APIView):
+    def get(self, request, *args, **kwargs):
+        inaktiv_munkalapok = Munkalap.objects.filter(munkalapstatus='enum_value_2')
+        serializer = MunkalapSerializer(inaktiv_munkalapok, many=True)
+        return Response(serializer.data)
 
 
-@api_view(['GET', 'POST'])
-def megrendelokHandler(request):
-    if request.method == 'GET':
-        # adja vissza a taskokat
-        tasks = Megrendelo.objects.all().values()
-        serialized = MegrendeloSerializer(tasks, many = True)
-        return Response(serialized.data)
 
-    if request.method == 'POST':
-        # hozzon létre új taskot
-        text = request.data['text']
-        task = Megrendelo(text=text)
-        task.save()
-        serialized = MegrendeloSerializer(task, many=False)
-        return Response(serialized.data)
+class OsszesMunkalapokJsonView(APIView):
+    def get(self, request, *args, **kwargs):
+        munkalapok = Munkalap.objects.all()
+        serializer = MunkalapSerializer(munkalapok, many=True)
+        return Response(serializer.data)
+    
+class UjMunkalapCreateView(APIView):
+    def post(self, request, *args, **kwargs):
+        serializer = MunkalapSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -1,27 +1,39 @@
-from rest_framework.serializers import ModelSerializer
-from .models import Gepjarmu, Megrendelo,Munkalap, Hibatipusok
+
+from rest_framework import serializers
+from .models  import Munkalap, Megrendelo, Gepjarmu, Hibatipusok
 
 
-
-class GepjarmuSerializer(ModelSerializer):
+class GepjarmuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Gepjarmu
-        fields = ['id','rendszam', 'gyartmany', 'tipus', 'gyartasi_ev', 'alvazszam']
+        fields = ['id', 'megrendelo_id', 'rendszam', 'gyartmany', 'tipus', 'gyartasi_ev', 'alvazszam']
 
-
-class HibatipusokSerializer(ModelSerializer):
+class HibatipusokSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hibatipusok
-        fields = ['id','hiba']
+        fields = ['id', 'hiba']
 
-
-class MegrendeloSerializer(ModelSerializer):
-    class Meta:
+class MegrendeloSerializer(serializers.ModelSerializer):
+     class Meta:
         model = Megrendelo
-        fields = ['id','gepjarmu_ID', 'nev', 'cim', 'email', 'telefon']
+        fields = ['id', 'nev', 'cim', 'email', 'telefon']
 
 
-class MunkalapSerializer(ModelSerializer):
+
+# ----Munkalap seriolizer
+
+class MunkalapSerializer(serializers.ModelSerializer):
+    munkalapstatus = serializers.CharField(source='get_munkalapstatus_display')
+    uzemenyagszint = serializers.CharField(source='get_uzemenyagszint_display')
+    megrendelo_id = MegrendeloSerializer()
+    gepjarmu_id=GepjarmuSerializer()
+    hibatipus_id= HibatipusokSerializer()
     class Meta:
         model = Munkalap
-        fields = ['id','megrendelo_id', 'datum', 'utolsomodositas', 'munkalapstatus', 'munkalapszam', 'kmoraallas', 'uzemenyagszint', 'hibatipus_id', 'hibaleiras', 'varhatohatarido', 'elvegzettmunka', 'felhasznaltanyag']
+        fields = '__all__'
+
+    def get_uzemenyagszint_display(self, obj):
+        uzemenyagszint_choices = dict(Munkalap.UZEMENYAGSZINT_CHOICES)
+        return uzemenyagszint_choices.get(obj.uzemenyagszint, obj.uzemenyagszint)
+
+        
