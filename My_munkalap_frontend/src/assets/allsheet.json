@@ -1,0 +1,82 @@
+[
+    {
+        "munkalapszam": "2024.02.23/1",
+        "megrendelo_neve": "Kiss Csaba Lajos",
+        "munkalapstatusz": "Aktív",
+        "uzemanyagszint": "Negyed",
+        "hiba": "Fékrendszer",
+        "gepjarmu": "Suzuki"
+    },
+    {
+        "munkalapszam": "2024.02.23/2",
+        "megrendelo_neve": "Kiss Csaba Lajos",
+        "munkalapstatusz": "Aktív",
+        "uzemanyagszint": "Negyed",
+        "hiba": "Fékrendszer",
+        "gepjarmu": "Suzuki"
+    },
+    {
+        "munkalapszam": "2024.02.23/3",
+        "megrendelo_neve": "Kiss Csaba Lajos",
+        "munkalapstatusz": "Aktív",
+        "uzemanyagszint": "Negyed",
+        "hiba": "Fékrendszer",
+        "gepjarmu": "Suzuki"
+    },
+    {
+        "munkalapszam": "2024.02.23/4",
+        "megrendelo_neve": "Kiss Csaba Lajos",
+        "munkalapstatusz": "Aktív",
+        "uzemanyagszint": "Negyed",
+        "hiba": "Fékrendszer",
+        "gepjarmu": "Suzuki"
+    },
+    {
+        "munkalapszam": "20240322/5",
+        "megrendelo_neve": "Kasza Diána",
+        "munkalapstatusz": "Lezárt",
+        "uzemanyagszint": "Háromnegyed",
+        "hiba": "Motor",
+        "gepjarmu": "Ford"
+    },
+    {
+        "munkalapszam": "20240322/6",
+        "megrendelo_neve": "Kasza Diána",
+        "munkalapstatusz": "Lezárt",
+        "uzemanyagszint": "Háromnegyed",
+        "hiba": "Motor",
+        "gepjarmu": "Ford"
+    },
+    {
+        "munkalapszam": "20240322/7",
+        "megrendelo_neve": "Kasza Diána",
+        "munkalapstatusz": "Lezárt",
+        "uzemanyagszint": "Háromnegyed",
+        "hiba": "Motor",
+        "gepjarmu": "Ford"
+    },
+    {
+        "munkalapszam": "20240322/8",
+        "megrendelo_neve": "Kasza Diána",
+        "munkalapstatusz": "Lezárt",
+        "uzemanyagszint": "Háromnegyed",
+        "hiba": "Motor",
+        "gepjarmu": "Ford"
+    },
+    {
+        "munkalapszam": "20240322/9",
+        "megrendelo_neve": "Kasza Diána",
+        "munkalapstatusz": "Lezárt",
+        "uzemanyagszint": "Háromnegyed",
+        "hiba": "Motor",
+        "gepjarmu": "Ford"
+    },
+    {
+        "munkalapszam": "20240322/10",
+        "megrendelo_neve": "Kasza Diána",
+        "munkalapstatusz": "Lezárt",
+        "uzemanyagszint": "Háromnegyed",
+        "hiba": "Motor",
+        "gepjarmu": "Ford"
+    }
+]
