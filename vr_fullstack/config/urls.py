@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from mymunkalap_app import views
+from Mymunkalap_app import views
 from  . import views as  config_views
 
 urlpatterns = [
